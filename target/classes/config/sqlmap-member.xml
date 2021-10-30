@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+		"-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="MemberDAO">
+	<!-- 
+		insert, update, delete 는 자동으로 int를 반환한다 (변경된 줄 수, 추가된 줄 수, 삭제된 줄 수)
+	 -->
+	 
+	<insert id="insertMember" parameterType="member">
+		insert into member 
+			(userid, userpw, username)
+		values
+			(#{userid}, #{userpw}, #{username})
+	</insert>
+	<select id="selectUserid" resultType="int">
+		select count(*) from member
+		
+		where
+			userid=#{userid}
+			
+	</select>
+	<select id="selectOne" parameterType="member" resultType="member">
+		select * from member
+		
+		where
+			userid=#{userid} and 
+			userpw=#{userpw}
+			
+	</select>
+</mapper>
